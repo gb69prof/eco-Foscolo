@@ -8,6 +8,8 @@
   --muted: #5f665f;
   --line: rgba(35, 79, 54, 0.22);
   --shadow: 0 18px 45px rgba(0, 0, 0, 0.14);
+  --right: #2f6f3e;
+  --wrong: #a94442;
   --font-scale: 1;
 }
 
@@ -30,7 +32,9 @@ body {
   overflow: hidden;
 }
 
-/* APP GENERALE */
+/* =========================
+   STRUTTURA GENERALE
+========================= */
 
 .app {
   width: 100vw;
@@ -41,7 +45,9 @@ body {
   overflow: hidden;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .topbar {
   height: 86px;
@@ -101,6 +107,10 @@ body {
   border-radius: 10px;
 }
 
+/* =========================
+   CONTROLLI FONT
+========================= */
+
 .font-controls {
   display: flex;
   gap: 6px;
@@ -120,6 +130,14 @@ body {
   background: rgba(255, 255, 255, 0.22);
 }
 
+/* =========================
+   MENU INDICE
+========================= */
+
+.select-wrap {
+  position: relative;
+}
+
 .select-wrap select {
   appearance: none;
   background: rgba(255, 255, 255, 0.08);
@@ -131,10 +149,6 @@ body {
   font-weight: 800;
   font-size: 15px;
   cursor: pointer;
-}
-
-.select-wrap {
-  position: relative;
 }
 
 .select-wrap::after {
@@ -151,7 +165,9 @@ body {
   color: #111;
 }
 
-/* MAIN */
+/* =========================
+   HOME / MAIN
+========================= */
 
 .main {
   min-height: 0;
@@ -165,7 +181,12 @@ body {
   padding: 54px 58px;
   overflow-y: auto;
   background:
-    linear-gradient(90deg, rgba(255,255,255,0.98), rgba(255,255,255,0.9) 70%, rgba(255,255,255,0.08));
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(255, 255, 255, 0.9) 70%,
+      rgba(255, 255, 255, 0.08)
+    );
   z-index: 2;
 }
 
@@ -248,7 +269,9 @@ body {
   font-weight: 700;
 }
 
-/* SIDECAR */
+/* =========================
+   SIDECAR IMMAGINE / VIDEO
+========================= */
 
 .sidecar {
   position: relative;
@@ -271,8 +294,13 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(251,250,246,0.95) 0%, rgba(251,250,246,0.35) 22%, rgba(251,250,246,0) 44%),
-    linear-gradient(0deg, rgba(0,0,0,0.16), rgba(0,0,0,0));
+    linear-gradient(
+      90deg,
+      rgba(251, 250, 246, 0.95) 0%,
+      rgba(251, 250, 246, 0.35) 22%,
+      rgba(251, 250, 246, 0) 44%
+    ),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0));
   pointer-events: none;
 }
 
@@ -312,19 +340,21 @@ body {
   border: none;
   border-radius: 999px;
   padding: 12px 18px;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   color: #111;
   font-family: Arial, sans-serif;
   font-weight: 700;
   cursor: pointer;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER CONCETTI CHIAVE
+========================= */
 
 .concept-footer {
   height: 150px;
   background:
-    linear-gradient(180deg, rgba(245,246,244,0.97), rgba(235,238,232,0.97));
+    linear-gradient(180deg, rgba(245, 246, 244, 0.97), rgba(235, 238, 232, 0.97));
   border-top: 1px solid var(--line);
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -366,7 +396,9 @@ body {
   line-height: 1.35;
 }
 
-/* PAGINE LEZIONE */
+/* =========================
+   PAGINE LEZIONE
+========================= */
 
 .lesson-main {
   grid-template-columns: 1fr;
@@ -381,16 +413,17 @@ body {
 .lesson-card {
   max-width: 1150px;
   margin: 0 auto;
-  background: rgba(255,255,255,0.92);
+  background: rgba(255, 255, 255, 0.92);
   border: 1px solid var(--line);
   border-radius: 24px;
   padding: 42px;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .lesson-card h1 {
   color: var(--green-dark);
   font-size: calc(42px * var(--font-scale));
+  line-height: 1.1;
   margin-top: 0;
 }
 
@@ -398,12 +431,22 @@ body {
   color: var(--green);
   font-size: calc(28px * var(--font-scale));
   font-weight: 400;
+  margin-top: 26px;
+}
+
+.lesson-card h3 {
+  color: var(--green-dark);
+  font-size: calc(23px * var(--font-scale));
 }
 
 .lesson-card p,
 .lesson-card li {
   font-size: calc(19px * var(--font-scale));
   line-height: 1.7;
+}
+
+.lesson-card strong {
+  color: var(--green-dark);
 }
 
 .box {
@@ -414,7 +457,9 @@ body {
   margin: 24px 0;
 }
 
-/* TEST */
+/* =========================
+   TEST
+========================= */
 
 .quiz-container {
   max-width: 1050px;
@@ -427,12 +472,13 @@ body {
   border-radius: 18px;
   padding: 22px;
   margin: 20px 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 .question h3 {
   margin-top: 0;
   color: var(--green-dark);
+  font-size: calc(22px * var(--font-scale));
 }
 
 .question label {
@@ -443,10 +489,16 @@ body {
   border-radius: 12px;
   margin: 10px 0;
   cursor: pointer;
+  line-height: 1.45;
+  font-size: calc(17px * var(--font-scale));
 }
 
 .question label:hover {
   background: #eef2ee;
+}
+
+.question input {
+  margin-right: 10px;
 }
 
 .action-btn {
@@ -458,13 +510,119 @@ body {
   font-family: Arial, sans-serif;
   font-weight: 700;
   cursor: pointer;
+  margin: 18px 12px 18px 0;
+  font-size: 16px;
 }
 
 .action-btn:hover {
   background: var(--green-dark);
 }
 
-/* RESPONSIVE */
+.action-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.result-area {
+  display: none;
+  margin-top: 34px;
+  border-top: 2px solid var(--line);
+  padding-top: 28px;
+}
+
+.score-card {
+  background: var(--green-dark);
+  color: white;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+
+.score-card h2 {
+  color: white;
+  margin-top: 0;
+}
+
+.score {
+  font-size: calc(42px * var(--font-scale));
+  font-weight: 800;
+  margin: 8px 0;
+  font-family: Arial, sans-serif;
+}
+
+.judgement {
+  font-size: calc(18px * var(--font-scale));
+  line-height: 1.55;
+}
+
+.review {
+  background: var(--cream);
+  border-left: 6px solid var(--wrong);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 18px 0;
+}
+
+.review h3 {
+  margin-top: 0;
+  color: var(--wrong);
+}
+
+.review-ok {
+  border-left-color: var(--right);
+}
+
+.review-ok h3 {
+  color: var(--right);
+}
+
+.correct {
+  color: var(--right);
+  font-weight: 700;
+}
+
+.wrong {
+  color: var(--wrong);
+  font-weight: 700;
+}
+
+.small-lesson {
+  margin-top: 10px;
+  line-height: 1.6;
+  font-size: calc(17px * var(--font-scale));
+}
+
+/* =========================
+   RESPONSIVE / IPAD
+========================= */
+
+@media (max-width: 1100px) {
+  .topbar {
+    grid-template-columns: 180px 1fr 460px;
+    padding: 0 22px;
+  }
+
+  .brand {
+    font-size: 32px;
+  }
+
+  .nav-link {
+    font-size: 13px;
+  }
+
+  .concept {
+    padding: 0 12px;
+  }
+
+  .concept span {
+    font-size: 13px;
+  }
+}
 
 @media (max-width: 980px) {
   body {
