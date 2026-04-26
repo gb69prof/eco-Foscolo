@@ -1,10 +1,516 @@
-<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Test finale</title><link rel="manifest" href="/manifest.webmanifest"><link rel="stylesheet" href="/style.css"></head><body><div class="app"><header class="topbar"><div class="nav-left"><a class="nav-link home" href="/index.html">⌂ HOME</a></div><div class="brand">L’ECO DI FOSCOLO</div><nav class="nav-right"><a class="nav-link" href="/chatbot-eco.html">💬 PARLA CON<br>L’ECO DI FOSCOLO</a><a class="nav-link" href="/tutor.html">🎓 TUTOR</a><div class="font-controls"><button class="font-btn" data-font-minus>A−</button><button class="font-btn" data-font-plus>A+</button></div><div class="select-wrap"><select data-index><option value="">INDICE</option><option value="/lezioni/meccanicismo.html">1. Meccanicismo</option><option value="/lezioni/frattura.html">2. Frattura iniziale</option><option value="/lezioni/religione-illusioni.html">3. Religione delle illusioni</option><option value="/lezioni/poetica.html">4. Poetica</option><option value="/lezioni/sintesi.html">Sintesi unitaria</option><option value="/test/test-foscolo.html">Test finale</option></select></div></nav></header><main class="main"><section class="content-panel" style="grid-column:1/-1"><h1>Test finale</h1><h2>Dal meccanicismo alla poetica</h2><p class="lead">10 domande, quattro risposte. L’ordine cambia a ogni caricamento. Alla fine avrai voto, giudizio e mini-lezioni sugli errori.</p><form id="quizForm"></form><button class="primary-btn" id="submitBtn" type="button">Correggi il test</button> <button class="primary-btn hidden" id="reloadBtn" type="button">Ricomincia</button><section id="result"></section></section></main><footer class="concept-footer"><div class="concept"><div class="icon">⚙</div><div><strong>MECCANICISMO</strong><span>L’universo come macchina regolata da leggi impersonali.</span></div></div><div class="concept"><div class="icon">💔</div><div><strong>FRATTURA</strong><span>Lo scontro tra ideali e realtà ingiusta e indifferente.</span></div></div><div class="concept"><div class="icon">🏛</div><div><strong>RELIGIONE DELLE ILLUSIONI</strong><span>Valori necessari per creare senso e resistere al nulla.</span></div></div><div class="concept"><div class="icon">🪶</div><div><strong>POETICA</strong><span>Equilibrio instabile tra forma classica e tensione romantica.</span></div></div><div class="concept"><div class="icon">⚖</div><div><strong>SENSO E VERITÀ</strong><span>La ricerca di senso senza rinunciare alla lucidità.</span></div></div></footer></div><script src="/app.js"></script><script>
-const questions=[{"q": "Secondo il meccanicismo, che cos’è l’universo?", "answers": [{"t": "Una macchina regolata da leggi fisiche necessarie e impersonali.", "ok": true}, {"t": "Un sistema morale che premia il bene e punisce il male.", "ok": false}, {"t": "Un luogo sacro governato da un fine ultimo.", "ok": false}, {"t": "Una realtà misteriosa.", "ok": false}], "lesson": "Il meccanicismo considera l’universo come una macchina: tutto è materia in movimento."}, {"q": "Qual è una conseguenza centrale del meccanicismo?", "answers": [{"t": "La morte è una fine, non un passaggio verso un aldilà.", "ok": true}, {"t": "L’anima immortale sopravvive.", "ok": false}, {"t": "La giustizia cosmica ripara tutto.", "ok": false}, {"t": "Il dolore riceve sempre ricompensa.", "ok": false}], "lesson": "Se tutto è materia, non esiste anima immortale né aldilà."}, {"q": "Perché il meccanicismo è importante per Foscolo?", "answers": [{"t": "Perché offre la verità del nulla con cui dovrà fare i conti.", "ok": true}, {"t": "Perché consola con una visione religiosa.", "ok": false}, {"t": "Perché protegge la patria.", "ok": false}, {"t": "Perché elimina il conflitto.", "ok": false}], "lesson": "Foscolo eredita una visione dura: il mondo non dà senso o consolazione."}, {"q": "Che cosa rappresenta il distacco da Zante?", "answers": [{"t": "Una prima incrinatura: la patria può essere perduta.", "ok": true}, {"t": "Una vittoria politica.", "ok": false}, {"t": "La prova che la natura protegge.", "ok": false}, {"t": "La fine della sua inquietudine.", "ok": false}], "lesson": "Il distacco da Zante è esperienza di perdita."}, {"q": "Perché Campoformio è decisivo?", "answers": [{"t": "Perché mostra il tradimento degli ideali e la logica del potere.", "ok": true}, {"t": "Perché garantisce libertà a Venezia.", "ok": false}, {"t": "Perché dimostra la giustizia di Napoleone.", "ok": false}, {"t": "Perché cancella il dolore.", "ok": false}], "lesson": "Campoformio mostra che la storia segue il calcolo politico."}, {"q": "Che cosa produce il suicidio del fratello Giovanni?", "answers": [{"t": "Rende il dolore privato, irreversibile e senza compensazione.", "ok": true}, {"t": "Conferma la provvidenza.", "ok": false}, {"t": "Dimostra che la ragione guarisce.", "ok": false}, {"t": "Rende Foscolo ottimista.", "ok": false}], "lesson": "Con Giovanni la frattura diventa personale."}, {"q": "Qual è la frattura fondamentale?", "answers": [{"t": "La ragione vede il nulla, ma il cuore desidera senso.", "ok": true}, {"t": "La fede cancella il meccanicismo.", "ok": false}, {"t": "La storia garantisce giustizia.", "ok": false}, {"t": "La poesia elimina ogni tensione.", "ok": false}], "lesson": "La frattura è tra ciò che si vede e ciò che si desidera."}, {"q": "Che cosa significa religione delle illusioni?", "answers": [{"t": "Costruire valori necessari sapendo che non hanno fondamento metafisico.", "ok": true}, {"t": "Credere a verità eterne garantite da Dio.", "ok": false}, {"t": "Rifiutare amore e patria.", "ok": false}, {"t": "Sostituire la poesia con religione tradizionale.", "ok": false}], "lesson": "Le illusioni danno senso senza negare il nulla."}, {"q": "Qual è il paradosso delle illusioni?", "answers": [{"t": "Non sono vere in senso assoluto, ma sono necessarie per vivere.", "ok": true}, {"t": "Sono vere perché provano l’aldilà.", "ok": false}, {"t": "Sono inutili.", "ok": false}, {"t": "Sono leggi fisiche.", "ok": false}], "lesson": "Foscolo sa che non sono garantite, ma le difende."}, {"q": "Perché Foscolo è neoclassico e preromantico?", "answers": [{"t": "Perché usa la forma classica per contenere una tensione moderna.", "ok": true}, {"t": "Perché rifiuta antico e sentimento.", "ok": false}, {"t": "Perché imita solo l’antico.", "ok": false}, {"t": "Perché rifiuta ogni forma.", "ok": false}], "lesson": "Il neoclassicismo dà ordine; il preromanticismo porta inquietudine."}];
-function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-const quiz=shuffle(questions).map(q=>({...q,answers:shuffle(q.answers)}));
-const form=document.getElementById('quizForm');
-quiz.forEach((item,index)=>{let div=document.createElement('div');div.className='question';div.innerHTML='<h3>'+(index+1)+'. '+item.q+'</h3>';item.answers.forEach((a,i)=>{let lab=document.createElement('label');lab.innerHTML='<input type="radio" name="q'+index+'" value="'+i+'"> '+a.t;div.appendChild(lab)});form.appendChild(div)});
-function judge(s){if(s>=9)return'Ottimo: percorso molto chiaro.';if(s>=8)return'Buono: quadro solido.';if(s>=6)return'Sufficiente: concetti principali compresi.';if(s>=5)return'Parziale: devi rinforzare i collegamenti.';return'Insufficiente: riprendi la sequenza dall’inizio.'}
-document.getElementById('submitBtn').onclick=()=>{let c=0,m=[];quiz.forEach((item,index)=>{let sel=document.querySelector('input[name="q'+index+'"]:checked'), corr=item.answers.find(a=>a.ok);if(sel){let ch=item.answers[Number(sel.value)];if(ch.ok)c++;else m.push({q:item.q,chosen:ch.t,correct:corr.t,lesson:item.lesson})}else m.push({q:item.q,chosen:'Nessuna risposta selezionata.',correct:corr.t,lesson:item.lesson})});let vote=(c/quiz.length*10).toFixed(1);let html='<div class="result-card"><h2>Risultato finale</h2><div style="font-size:44px;font-weight:bold">'+vote+'/10</div><p><strong>Giudizio:</strong> '+judge(Number(vote))+'</p><p>Risposte corrette: '+c+' su '+quiz.length+'</p></div>';if(!m.length)html+='<div class="review" style="border-left-color:#3c763d"><h3>Nessun recupero necessario</h3><p>Tutto corretto.</p></div>';else{html+='<h2>Mini-lezioni di recupero</h2>';m.forEach((x,i)=>html+='<div class="review"><h3>Errore '+(i+1)+': '+x.q+'</h3><p><strong>Risposta data:</strong> '+x.chosen+'</p><p><strong>Risposta corretta:</strong> '+x.correct+'</p><p><strong>Chiarimento:</strong> '+x.lesson+'</p></div>')}document.getElementById('result').innerHTML=html;document.getElementById('submitBtn').disabled=true;document.getElementById('reloadBtn').classList.remove('hidden');document.getElementById('result').scrollIntoView({behavior:'smooth'})};
-document.getElementById('reloadBtn').onclick=()=>location.reload()
-</script></body></html>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Test – L’eco di Foscolo</title>
+
+  <link rel="manifest" href="../manifest.webmanifest" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <div class="app">
+
+    <header class="topbar">
+      <div class="nav-left">
+        <a class="nav-link home" href="../index.html">⌂ HOME</a>
+      </div>
+
+      <div class="brand">L’ECO DI FOSCOLO</div>
+
+      <nav class="nav-right">
+        <a class="nav-link" href="../chatbot-eco.html">
+          💬 PARLA CON<br />
+          L’ECO DI FOSCOLO
+        </a>
+
+        <a class="nav-link" href="../tutor.html">🎓 TUTOR</a>
+
+        <div class="font-controls">
+          <button class="font-btn" type="button" data-font-minus>A−</button>
+          <button class="font-btn" type="button" data-font-plus>A+</button>
+        </div>
+
+        <div class="select-wrap">
+          <select data-index>
+            <option value="">INDICE</option>
+            <option value="../lezioni/meccanicismo.html">1. Meccanicismo</option>
+            <option value="../lezioni/frattura.html">2. Frattura iniziale</option>
+            <option value="../lezioni/religione-illusioni.html">3. Religione delle illusioni</option>
+            <option value="../lezioni/poetica.html">4. Poetica</option>
+            <option value="../lezioni/sintesi.html">Sintesi unitaria</option>
+            <option value="../test/test-foscolo.html">Test finale</option>
+          </select>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main lesson-main">
+      <section class="lesson-page">
+        <article class="lesson-card quiz-container">
+
+          <h1>Test finale</h1>
+          <h2>Dal meccanicismo alla poetica foscoliana</h2>
+
+          <p>
+            Rispondi alle 10 domande. Ogni domanda ha quattro risposte, ma solo
+            una è corretta. L’ordine delle domande e delle risposte cambia a ogni
+            caricamento della pagina.
+          </p>
+
+          <div class="box">
+            <strong>Alla fine riceverai:</strong><br />
+            voto in decimali · giudizio · mini-lezioni solo sugli errori
+          </div>
+
+          <form id="quizForm"></form>
+
+          <button class="action-btn" id="submitBtn" type="button">
+            Correggi il test
+          </button>
+
+          <button class="action-btn hidden" id="reloadBtn" type="button">
+            Ricomincia con ordine diverso
+          </button>
+
+          <section id="result" class="result-area"></section>
+
+        </article>
+      </section>
+    </main>
+
+    <footer class="concept-footer">
+      <div class="concept">
+        <div class="icon">⚙</div>
+        <div>
+          <strong>MECCANICISMO</strong>
+          <span>L’universo come macchina regolata da leggi impersonali.</span>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="icon">💔</div>
+        <div>
+          <strong>FRATTURA</strong>
+          <span>Lo scontro tra ideali e realtà ingiusta e indifferente.</span>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="icon">🏛</div>
+        <div>
+          <strong>RELIGIONE DELLE ILLUSIONI</strong>
+          <span>Valori necessari per creare senso e resistere al nulla.</span>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="icon">🪶</div>
+        <div>
+          <strong>POETICA</strong>
+          <span>Equilibrio instabile tra forma classica e tensione romantica.</span>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="icon">⚖</div>
+        <div>
+          <strong>SENSO E VERITÀ</strong>
+          <span>La ricerca di senso senza rinunciare alla lucidità.</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="../app.js"></script>
+
+  <script>
+    const questions = [
+      {
+        q: "Secondo il meccanicismo, che cos’è l’universo?",
+        answers: [
+          {
+            t: "Una macchina regolata da leggi fisiche necessarie e impersonali.",
+            ok: true
+          },
+          {
+            t: "Un sistema morale che premia il bene e punisce il male.",
+            ok: false
+          },
+          {
+            t: "Un luogo sacro governato da un fine ultimo.",
+            ok: false
+          },
+          {
+            t: "Una realtà misteriosa in cui tutto dipende dal caso morale.",
+            ok: false
+          }
+        ],
+        lesson:
+          "Il meccanicismo considera l’universo come una macchina: tutto è materia in movimento e obbedisce a leggi fisiche impersonali. Non c’è un ordine morale che ricompensi o punisca."
+      },
+      {
+        q: "Qual è una conseguenza centrale del meccanicismo per l’uomo?",
+        answers: [
+          {
+            t: "La morte è una fine, non un passaggio verso un aldilà.",
+            ok: true
+          },
+          {
+            t: "L’anima immortale garantisce la sopravvivenza dopo la morte.",
+            ok: false
+          },
+          {
+            t: "La giustizia cosmica ripara ogni ingiustizia storica.",
+            ok: false
+          },
+          {
+            t: "Il dolore umano riceve sempre una ricompensa finale.",
+            ok: false
+          }
+        ],
+        lesson:
+          "Se tutto è materia, non esiste anima immortale né aldilà. Perciò la morte non è vista come passaggio o giudizio, ma come dissoluzione dell’esistenza materiale."
+      },
+      {
+        q: "Perché il meccanicismo è importante per comprendere Foscolo?",
+        answers: [
+          {
+            t: "Perché offre la verità del nulla con cui Foscolo dovrà fare i conti.",
+            ok: true
+          },
+          {
+            t: "Perché consola Foscolo con una visione religiosa della storia.",
+            ok: false
+          },
+          {
+            t: "Perché dimostra che la patria è sempre protetta dalla giustizia.",
+            ok: false
+          },
+          {
+            t: "Perché elimina ogni conflitto interiore nella poesia foscoliana.",
+            ok: false
+          }
+        ],
+        lesson:
+          "Foscolo eredita una visione lucida e dura: il mondo non dà senso, giustizia o consolazione. Tutta la sua opera nasce dal tentativo di vivere dentro questa verità senza arrendersi."
+      },
+      {
+        q: "Che cosa rappresenta il distacco da Zante nella formazione di Foscolo?",
+        answers: [
+          {
+            t: "Una prima incrinatura: la patria può essere perduta.",
+            ok: true
+          },
+          {
+            t: "Una vittoria politica che rafforza la sua fiducia nella storia.",
+            ok: false
+          },
+          {
+            t: "La prova che la natura protegge sempre l’uomo.",
+            ok: false
+          },
+          {
+            t: "La definitiva soluzione della sua inquietudine interiore.",
+            ok: false
+          }
+        ],
+        lesson:
+          "Il distacco da Zante non è solo uno spostamento geografico: diventa una prima esperienza di perdita. La patria non è più un possesso naturale, ma qualcosa di fragile."
+      },
+      {
+        q: "Perché il Trattato di Campoformio è decisivo per Foscolo?",
+        answers: [
+          {
+            t: "Perché mostra il tradimento degli ideali rivoluzionari e la logica del potere.",
+            ok: true
+          },
+          {
+            t: "Perché garantisce a Venezia libertà politica e indipendenza.",
+            ok: false
+          },
+          {
+            t: "Perché dimostra che Napoleone agisce sempre per giustizia.",
+            ok: false
+          },
+          {
+            t: "Perché cancella definitivamente ogni dolore personale di Foscolo.",
+            ok: false
+          }
+        ],
+        lesson:
+          "Campoformio è la ferita storica: Napoleone cede Venezia all’Austria. Per Foscolo il liberatore si rivela uomo di potere, e la storia appare dominata dal calcolo, non dalla giustizia."
+      },
+      {
+        q: "Che cosa produce il suicidio del fratello Giovanni nella visione foscoliana?",
+        answers: [
+          {
+            t: "Rende il dolore un’esperienza privata, irreversibile e senza compensazione.",
+            ok: true
+          },
+          {
+            t: "Conferma che ogni sofferenza viene riparata dalla provvidenza.",
+            ok: false
+          },
+          {
+            t: "Dimostra che la ragione basta sempre a guarire dal dolore.",
+            ok: false
+          },
+          {
+            t: "Trasforma Foscolo in un autore ottimista e pacificato.",
+            ok: false
+          }
+        ],
+        lesson:
+          "Con il suicidio del fratello, la frattura non è più solo storica o politica: diventa personale. Il dolore appare reale, intimo, non riscattato da nessuna giustizia superiore."
+      },
+      {
+        q: "Qual è la frattura fondamentale di Foscolo?",
+        answers: [
+          {
+            t: "La ragione vede il nulla, ma il cuore continua a desiderare senso.",
+            ok: true
+          },
+          {
+            t: "La fede religiosa cancella completamente il meccanicismo.",
+            ok: false
+          },
+          {
+            t: "La storia garantisce sempre libertà, giustizia e patria.",
+            ok: false
+          },
+          {
+            t: "La poesia elimina ogni tensione e produce armonia definitiva.",
+            ok: false
+          }
+        ],
+        lesson:
+          "La frattura foscoliana nasce tra ciò che si vede e ciò che si desidera: la ragione riconosce l’indifferenza del mondo, ma l’uomo non riesce a rinunciare a giustizia, bellezza e senso."
+      },
+      {
+        q: "Che cosa significa “religione delle illusioni” in Foscolo?",
+        answers: [
+          {
+            t: "Costruire valori umani necessari pur sapendo che non hanno fondamento metafisico.",
+            ok: true
+          },
+          {
+            t: "Credere ingenuamente che le illusioni siano verità eterne garantite da Dio.",
+            ok: false
+          },
+          {
+            t: "Rifiutare amore, patria, bellezza, poesia e memoria perché inutili.",
+            ok: false
+          },
+          {
+            t: "Sostituire la poesia con una dottrina religiosa tradizionale.",
+            ok: false
+          }
+        ],
+        lesson:
+          "Le illusioni foscoliane non sono inganni inconsapevoli: sono costruzioni umane necessarie. Amore, patria, bellezza, poesia e memoria danno senso senza negare la verità del nulla."
+      },
+      {
+        q: "Qual è il paradosso delle illusioni foscoliane?",
+        answers: [
+          {
+            t: "Non sono vere in senso assoluto, ma sono necessarie per vivere.",
+            ok: true
+          },
+          {
+            t: "Sono vere perché dimostrano l’esistenza dell’aldilà.",
+            ok: false
+          },
+          {
+            t: "Sono inutili perché l’uomo può vivere senza senso.",
+            ok: false
+          },
+          {
+            t: "Sono imposte dalla natura come leggi fisiche impersonali.",
+            ok: false
+          }
+        ],
+        lesson:
+          "Il cuore della religione delle illusioni è il paradosso: Foscolo sa che esse non sono garantite metafisicamente, ma le difende perché senza di esse l’uomo crollerebbe davanti al nulla."
+      },
+      {
+        q: "Perché Foscolo è insieme neoclassico e preromantico?",
+        answers: [
+          {
+            t: "Perché usa la forma classica per contenere una tensione moderna e dolorosa.",
+            ok: true
+          },
+          {
+            t: "Perché rifiuta completamente sia l’antico sia il sentimento.",
+            ok: false
+          },
+          {
+            t: "Perché la sua poesia è solo imitazione fredda del mondo antico.",
+            ok: false
+          },
+          {
+            t: "Perché il preromanticismo elimina ogni bisogno di ordine e forma.",
+            ok: false
+          }
+        ],
+        lesson:
+          "Il neoclassicismo dà a Foscolo ordine, misura e bellezza; il preromanticismo porta dentro quella forma dolore, inquietudine e desiderio d’infinito. La poesia diventa equilibrio instabile."
+      }
+    ];
+
+    function shuffle(array) {
+      const copy = [...array];
+
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+
+      return copy;
+    }
+
+    const quiz = shuffle(questions).map((question, index) => {
+      return {
+        ...question,
+        id: index,
+        answers: shuffle(question.answers)
+      };
+    });
+
+    const form = document.getElementById("quizForm");
+
+    quiz.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.className = "question";
+
+      div.innerHTML = `<h3>${index + 1}. ${item.q}</h3>`;
+
+      item.answers.forEach((answer, answerIndex) => {
+        const label = document.createElement("label");
+
+        label.innerHTML = `
+          <input type="radio" name="q${index}" value="${answerIndex}" />
+          ${answer.t}
+        `;
+
+        div.appendChild(label);
+      });
+
+      form.appendChild(div);
+    });
+
+    function getJudgement(score) {
+      if (score >= 9) {
+        return "Ottimo: hai colto la struttura profonda del percorso foscoliano, non solo i singoli contenuti.";
+      }
+
+      if (score >= 8) {
+        return "Buono: il quadro generale è solido. Restano pochi punti da rendere più precisi.";
+      }
+
+      if (score >= 6) {
+        return "Sufficiente: hai compreso l’ossatura del discorso, ma alcuni passaggi logici vanno consolidati.";
+      }
+
+      if (score >= 5) {
+        return "Parziale: riconosci alcuni concetti, ma la sequenza meccanicismo → frattura → illusioni → poetica non è ancora sicura.";
+      }
+
+      return "Insufficiente: bisogna riprendere il percorso dall’inizio, perché i concetti sono collegati tra loro e non funzionano isolati.";
+    }
+
+    function correctQuiz() {
+      let correct = 0;
+      const mistakes = [];
+
+      quiz.forEach((item, index) => {
+        const selected = document.querySelector(
+          `input[name="q${index}"]:checked`
+        );
+
+        const correctAnswer = item.answers.find((answer) => answer.ok);
+
+        if (selected) {
+          const chosen = item.answers[Number(selected.value)];
+
+          if (chosen.ok) {
+            correct++;
+          } else {
+            mistakes.push({
+              question: item.q,
+              chosen: chosen.t,
+              correct: correctAnswer.t,
+              lesson: item.lesson
+            });
+          }
+        } else {
+          mistakes.push({
+            question: item.q,
+            chosen: "Nessuna risposta selezionata.",
+            correct: correctAnswer.t,
+            lesson: item.lesson
+          });
+        }
+      });
+
+      const vote = ((correct / quiz.length) * 10).toFixed(1);
+      const result = document.getElementById("result");
+
+      result.style.display = "block";
+
+      let html = `
+        <div class="score-card">
+          <h2>Risultato finale</h2>
+          <div class="score">${vote}/10</div>
+          <div class="judgement">
+            <strong>Giudizio:</strong> ${getJudgement(Number(vote))}
+          </div>
+          <p>Risposte corrette: ${correct} su ${quiz.length}</p>
+        </div>
+      `;
+
+      if (mistakes.length === 0) {
+        html += `
+          <div class="review review-ok">
+            <h3>Nessun recupero necessario</h3>
+            <p>Hai risposto correttamente a tutte le domande.</p>
+          </div>
+        `;
+      } else {
+        html += `<h2>Mini-lezioni di recupero</h2>`;
+
+        mistakes.forEach((mistake, index) => {
+          html += `
+            <div class="review">
+              <h3>Errore ${index + 1}: ${mistake.question}</h3>
+              <p><span class="wrong">Risposta data:</span> ${mistake.chosen}</p>
+              <p><span class="correct">Risposta corretta:</span> ${mistake.correct}</p>
+              <div class="small-lesson">
+                <strong>Chiarimento:</strong> ${mistake.lesson}
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      result.innerHTML = html;
+
+      document.getElementById("submitBtn").disabled = true;
+      document.getElementById("reloadBtn").classList.remove("hidden");
+
+      result.scrollIntoView({ behavior: "smooth" });
+    }
+
+    document
+      .getElementById("submitBtn")
+      .addEventListener("click", correctQuiz);
+
+    document
+      .getElementById("reloadBtn")
+      .addEventListener("click", () => location.reload());
+  </script>
+</body>
+</html>
