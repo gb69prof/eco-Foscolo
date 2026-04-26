@@ -1,0 +1,4 @@
+function setFontScale(v){const next=Math.max(.85,Math.min(1.35,v));document.documentElement.style.setProperty('--fontScale',next);localStorage.setItem('foscoloFontScale',String(next))}
+function getFontScale(){return parseFloat(localStorage.getItem('foscoloFontScale')||'1')}
+function initCommon(){setFontScale(getFontScale());document.querySelectorAll('[data-font-plus]').forEach(b=>b.addEventListener('click',()=>setFontScale(getFontScale()+.08)));document.querySelectorAll('[data-font-minus]').forEach(b=>b.addEventListener('click',()=>setFontScale(getFontScale()-.08)));document.querySelectorAll('[data-index]').forEach(sel=>sel.addEventListener('change',e=>{if(e.target.value) location.href=e.target.value}))}
+document.addEventListener('DOMContentLoaded',initCommon);if('serviceWorker'in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}))}
